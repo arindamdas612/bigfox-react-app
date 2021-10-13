@@ -34,6 +34,7 @@ import CartItem from '../cart/CartItem'
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
+        maxHeight: '100px'
     },
     menuButton: {
         marginRight: theme.spacing(2),

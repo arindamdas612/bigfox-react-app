@@ -3,9 +3,8 @@ import React, { useEffect, useContext } from 'react'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import { makeStyles } from '@material-ui/styles'
-
 import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
 
 import BxAppBar from '../components/common/BxAppBar'
 import Footer from '../components/common/Footer'
@@ -23,15 +22,7 @@ import Checkout from './pages/Checkout'
 
 import PrivateRoute from '../components/common/PrivateRoute'
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        paddingTop: '10px',
-        paddingBottom: '10px'
-    }
-}))
-
 const Layout = () => {
-    const classes = useStyles()
 
     const { authData, setAuthData } = useContext(AuthContext)
 
@@ -57,25 +48,30 @@ const Layout = () => {
 
     return (
         <Router>
-            <BxAppBar />
-            <Container
-                maxWidth="lg"
-                className={classes.root}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    minHeight: '100vh',
+                }}
             >
-                <Route path="/auth" exact component={Auth} />
-                <Route path="/" exact component={Home} />
-                <PrivateRoute path="/profile" exact>
-                    <Profile />
-                </PrivateRoute>
-                <Route path="/shop/category" component={Category} />
-                <Route path="/shop/sub-category" component={SubCategory} />
-                <Route path="/shop/product" component={Product} />
-                <Route path="/cart" exact component={Cart} />
-                <PrivateRoute path="/checkout" exact>
-                    <Checkout />
-                </PrivateRoute>
-            </Container>
-            <Footer />
+                <BxAppBar />
+                <Container component="main" maxWidth="xl" >
+                    <Route path="/auth" exact component={Auth} />
+                    <Route path="/" exact component={Home} />
+                    <PrivateRoute path="/profile" exact>
+                        <Profile />
+                    </PrivateRoute>
+                    <Route path="/shop/category" component={Category} />
+                    <Route path="/shop/sub-category" component={SubCategory} />
+                    <Route path="/shop/product" component={Product} />
+                    <Route path="/cart" exact component={Cart} />
+                    <PrivateRoute path="/checkout" exact>
+                        <Checkout />
+                    </PrivateRoute>
+                    <Footer />
+                </Container>
+            </Box>
         </Router>
     )
 }

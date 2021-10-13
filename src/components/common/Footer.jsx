@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Box from '@material-ui/core/Box'
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 
@@ -16,11 +17,12 @@ const useStyles = makeStyles((theme) => ({
     footer: {
         marginTop: 'auto',
         backgroundColor: theme.palette.primary.main,
-        // marginTop: theme.spacing(8),
         padding: theme.spacing(6, 0),
+        marginTop: theme.spacing(5)
     },
     content: {
-        paddingBottom: theme.spacing(3)
+        paddingBottom: theme.spacing(3),
+        background: theme.palette.primary.main
     },
     text: {
         color: theme.palette.primary.contrastText
@@ -52,9 +54,21 @@ const Footer = () => {
     const classes = useStyles()
 
     return (
-        <footer className={classes.footer}>
-            <Container maxWidth="lg">
-                <Grid container className={classes.content} spacing={3} justifyContent="center">
+        <Box
+            component="footer"
+            className={classes.footer}
+            // sx={{
+            //     py: 3,
+            //     px: 2,
+            //     mt: 'auto',
+            //     backgroundColor: (theme) =>
+            //         theme.palette.mode === 'light'
+            //             ? theme.palette.grey[200]
+            //             : theme.palette.grey[800],
+            // }}
+        >
+            <Container>
+            <Grid container className={classes.content} spacing={3} justifyContent="center">
                     <Grid item xs={12} sm={2}>
                         <Typography variant="h4" className={classes.text}>
                             BigFox
@@ -172,7 +186,7 @@ const Footer = () => {
                 <Divider className={classes.divider} />
                 <Copyright />
             </Container>
-        </footer>
+        </Box>
     )
 }
 
